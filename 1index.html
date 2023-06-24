@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Todo List</title>
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .form {
+      display: flex;
+    }
+
+    .form input[type="text"] {
+      flex: 1;
+    }
+
+    .form input[type="submit"] {
+      margin-left: 10px;
+    }
+
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .todo-item input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .pending-list {
+      margin-bottom: 20px;
+    }
+
+    .completed-list {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Todo List</h1>
+
+    <div class="form">
+      <input type="text" id="new-task" placeholder="Enter a new task">
+      <input type="submit" value="Add" onclick="addTask()">
+    </div>
+
+    <div class="pending-list">
+      <h2>Pending Works</h2>
+      <ul id="pending-tasks"></ul>
+    </div>
+
+    <div class="completed-list">
+      <h2>Completed Works</h2>
+      <ul id="completed-tasks"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Array to store tasks
+    let tasks = [];
+    let tasksCompleted = [];
+
+    document.addEventListener("keydown",(event)=>{
+      const keyPressed = event.key;
+      if(keyPressed === "Enter" ){
+        addTask();
+      }
+    })
+
+    function addTask() {
+      const input = document.getElementById("new-task");
+      const task = input.value.trim();
+
+      if (task !== "") {
+        tasks.push(task);
+        input.value = "";
+        renderTasks();
+      }
+    }
+
+    function renderTasks() {
+      const pendingList = document.getElementById("pending-tasks");
+      const completedList = document.getElementById("completed-tasks");
+
+      // Clear the lists
+      pendingList.innerHTML = "";
+      completedList.innerHTML = "";
+
+      // Render pending tasks
+      tasks.forEach((task, index) => {
+        if (!tasksCompleted.includes(index)) {
+          const li = createTaskListItem(task, index, false);
+          pendingList.appendChild(li);
+        }
+      });
+
+      // Render completed tasks
+      tasksCompleted.forEach((completedIndex) => {
+        const task = tasks[completedIndex];
+        const li = createTaskListItem(task, completedIndex, true);
+        completedList.appendChild(li);
+      });
+    }
+
+    function createTaskListItem(task, index, isCompleted) {
+      const li = document.createElement("li");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = isCompleted;
+      checkbox.addEventListener("change", () => {
+        toggleCompletion(index);
+      });
+      const span = document.createElement("span");
+      span.textContent = task;
+      const editButton = document.createElement("button");
+      editButton.textContent = "Edit";
+      editButton.addEventListener("click", () => {
+        editTask(index);
+      });
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", () => {
+        deleteTask(index);
+      });
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+      li.appendChild(editButton);
+      li.appendChild(deleteButton);
+
+      return li;
+    }
+
+    function toggleCompletion(index) {
+      if (tasksCompleted.includes(index)) {
+        tasksCompleted.splice(tasksCompleted.indexOf(index), 1);
+      } else {
+        tasksCompleted.push(index);
+      }
+
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      const completedIndex = tasksCompleted.indexOf(index);
+      if (completedIndex !== -1) {
+        tasksCompleted.splice(completedIndex, 1);
+      }
+      renderTasks();
+    }
+
+    function editTask(index) {
+      const newTask = prompt("Enter the updated task:", tasks[index]);
+      if (newTask !== null) {
+        tasks[index] = newTask.trim();
+        renderTasks();
+      }
+    }
+
+  </script>
+</body>
+
+</html>
