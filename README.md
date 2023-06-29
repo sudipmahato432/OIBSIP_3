@@ -5,6 +5,12 @@ A simple web application that allows users to create and manage a todo list. The
 
 __This Project is a part of my OASIS INFOBYTE Web Development Intenship.__
 
+
+## **ToDo List UI**
+
+![image](https://github.com/sudipmahato432/OIBSIP_3/assets/80632874/e848f1d9-a220-45ae-ad84-20379af85efd)
+
+
 ## Features
 
 - Add new tasks by providing a title and description.
