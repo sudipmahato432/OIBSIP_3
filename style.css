@@ -5,18 +5,18 @@
 }
 
 body{
-    background-color: rgb(111, 78, 55);
+    background-color: rgb(14,61,85);
 }
 
 .navbar{
-    background-color: #ebc487;
+    background-color: #2d25e2e3;
     font-size: small;
 }
 
 .navbar h1{
     text-align: center;
-    padding: 3px 0;
-    color: rgb(139 25 226);
+    padding: 6px 0;
+    color: rgb(198, 228, 108);
 }
 
 .S1{
@@ -43,9 +43,11 @@ body{
 
 input[name = title]{
     padding: 8px ;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 textarea[name = Description]{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     padding: 8px;
     resize: none;
     overflow: scroll;
@@ -70,6 +72,7 @@ textarea[name = Description]{
 }
 
 table{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     width: 100%;
     color: white;
     /* border-collapse: collapse; */
