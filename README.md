@@ -12,7 +12,7 @@ You can access this page live on [Demo](https://oibsip-3-ruby.vercel.app/).
 
 ## **ToDo List UI**
 
-![image](https://github.com/sudipmahato432/OIBSIP_3/assets/80632874/e848f1d9-a220-45ae-ad84-20379af85efd)
+![image](https://github.com/sudipmahato432/OIBSIP_3/assets/80632874/c864e2c3-8758-4536-bdc6-e0b93426b69e)
 
 
 ## Features
